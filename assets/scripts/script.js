@@ -6,36 +6,35 @@ function writePassword() {
   // var password = generatePassword();
   // var passwordText = document.querySelector("#password");
   var criteria = promptForCriteria();
+  console.log(criteria)
   // passwordText.value = password;
 
 }
 
 function promptForCriteria(){
-  var passwordLength = null;
+  var userInputs = {};
+  userInputs.passwordLength = null;
 
-  while ((passwordLength < 8) ||
-        (passwordLength > 128) ||
-        (isNaN(passwordLength))){
-    passwordLength = prompt ("How long should the password be?")
+  while ((userInputs.passwordLength < 8) ||
+        (userInputs.passwordLength > 128) ||
+        (isNaN(userInputs.passwordLength))){
+    userInputs.passwordLength = prompt ("How long should the password be?")
   }
 
-  var useLowercase = confirm("Include Lowercase Characters?");
-  // alert("Include Lowercase Characters? " + useLowercase);
+  userInputs.useLowercase = confirm("Include Lowercase Characters?");
 
-  var useUppercase = confirm("Include Uppercase Characters?");
-  // alert("Include Uppercase Characters? " + useUppercase);
+  userInputs.useUppercase = confirm("Include Uppercase Characters?");
 
-  var useNumbers = confirm("Include Numbers?");
-  // alert("Include Numbers? " + useNumbers);
+  userInputs.useNumbers = confirm("Include Numbers?");
 
-  var useSpecialCharacters = confirm("Include Special Characters?");
-  // alert("Include Special Characters? " + useSpecialCharacters);
+  userInputs.useSpecialCharacters = confirm("Include Special Characters?");
 
-  alert("How long should the password be? " + passwordLength + "\n" +
-        "Include Lowercase Characters? " + useLowercase + "\n" +
-        "Include Uppercase Characters? " + useUppercase + "\n" +
-        "Include Numbers? " + useNumbers + "\n" +
-        "Include Special Characters? " + useSpecialCharacters);
+  alert("How long should the password be? " + userInputs.passwordLength + "\n" +
+        "Include Lowercase Characters? " + userInputs.useLowercase + "\n" +
+        "Include Uppercase Characters? " + userInputs.useUppercase + "\n" +
+        "Include Numbers? " + userInputs.useNumbers + "\n" +
+        "Include Special Characters? " + userInputs.useSpecialCharacters);
+  return userInputs;
 }
 
 // Add event listener to generate button
