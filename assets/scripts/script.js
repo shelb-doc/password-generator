@@ -4,14 +4,12 @@ var generateBtn = document.querySelector("#generate");
 // Write password to the #password input
 function writePassword() {
   
-  // var passwordText = document.querySelector("#password");
+  var passwordText = document.querySelector("#password");
   var criteria = promptForCriteria();
-  console.log(criteria)
 
   var password = generatePassword(criteria);
-  console.log(password)
 
-  // passwordText.value = password;
+  passwordText.value = password;
 
 }
 
@@ -66,26 +64,29 @@ function promptForCriteria(){
 
 function generatePassword(criteria){
   var options = "";
+  var newPassword = "";
 
   if(criteria.useLowercase){
     options = options + "abcdefghijklmnopqrstuvwxyz"
-    console.log(options)
   }
 
   if(criteria.useUppercase){
     options = options + "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    console.log(options)
   }
 
   if(criteria.useNumbers){
     options = options + "0123456789"
-    console.log(options)
   }
 
   if(criteria.useSpecialCharacters){
     options = options + "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
-    console.log(options)
   }
+
+  for (i = 1; i <= criteria.passwordLength; i++) {
+    var index = Math.floor(Math.random() * options.length);
+    newPassword = newPassword + options.charAt(index)
+  }
+  return newPassword;
 }
 
 // Add event listener to generate button
