@@ -14,20 +14,43 @@ function writePassword() {
 function promptForCriteria(){
   var userInputs = {};
   userInputs.passwordLength = null;
+  userInputs.useLowercase = null;
+  userInputs.useUppercase = null;
+  userInputs.useNumbers = null;
+  userInputs.useSpecialCharacters = null;
 
   while ((userInputs.passwordLength < 8) ||
         (userInputs.passwordLength > 128) ||
         (isNaN(userInputs.passwordLength))){
+
     userInputs.passwordLength = prompt ("How long should the password be?")
+
+    if((userInputs.passwordLength < 8) ||
+    (userInputs.passwordLength > 128) ||
+    (isNaN(userInputs.passwordLength))){
+      alert("The password length must be between 8 and 128 characters.")
+    }
   }
 
-  userInputs.useLowercase = confirm("Include Lowercase Characters?");
+  while (!(userInputs.useLowercase) &&
+        !(userInputs.useUppercase) &&
+        !(userInputs.useNumbers) &&
+        !(userInputs.useSpecialCharacters)){
+    userInputs.useLowercase = confirm("Include Lowercase Characters?");
 
-  userInputs.useUppercase = confirm("Include Uppercase Characters?");
+    userInputs.useUppercase = confirm("Include Uppercase Characters?");
 
-  userInputs.useNumbers = confirm("Include Numbers?");
+    userInputs.useNumbers = confirm("Include Numbers?");
 
-  userInputs.useSpecialCharacters = confirm("Include Special Characters?");
+    userInputs.useSpecialCharacters = confirm("Include Special Characters?");
+
+    if(!(userInputs.useLowercase) &&
+        !(userInputs.useUppercase) &&
+        !(userInputs.useNumbers) &&
+        !(userInputs.useSpecialCharacters)){
+      alert("Please select at least one type of characters.")
+    }
+  }
 
   alert("How long should the password be? " + userInputs.passwordLength + "\n" +
         "Include Lowercase Characters? " + userInputs.useLowercase + "\n" +
